@@ -204,12 +204,18 @@
                 <strong>📁 File:</strong> CybersecurityPlatform.exe<br>
                 <strong>📊 Size:</strong> 30.8 MB<br>
                 <strong>💻 Platform:</strong> Windows 10/11 (64-bit)<br>
-                <strong>📜 License:</strong> Free for Personal Use
+                <strong>📜 License:</strong> Free for Personal Use<br>
+                <strong>🔐 SHA-256:</strong> <code style="font-size: 10px;">7d16969280557c499189f78977b47ebeb46f07bd37393c5a00c2ac5e768fa53a</code>
             </div>
-            <a href="CybersecurityPlatform.exe" download class="download-btn">
+            <a href="./CybersecurityPlatform.exe" download="CybersecurityPlatform.exe" class="download-btn" onclick="trackDownload()">
                 🔽 DOWNLOAD NOW - FREE
             </a>
             <p><strong>Single File Installer - No Installation Required</strong></p>
+            <div style="margin-top: 15px;">
+                <p><strong>Alternative Download Methods:</strong></p>
+                <a href="./CybersecurityPlatform.exe" target="_blank" style="color: #007bff; text-decoration: underline;">Direct Link</a> | 
+                <a href="./CybersecurityPlatform.exe" download style="color: #007bff; text-decoration: underline;">Force Download</a>
+            </div>
         </div>
 
         <div class="features-grid">
@@ -341,15 +347,58 @@
         <div class="download-section">
             <h2>🔽 Ready to Secure Your System?</h2>
             <p>Join thousands of users protecting their systems with professional-grade security</p>
-            <a href="CybersecurityPlatform.exe" download class="download-btn">
+            <a href="./CybersecurityPlatform.exe" download="CybersecurityPlatform.exe" class="download-btn" onclick="trackDownload()">
                 🛡️ DOWNLOAD CYBERSECURITY PLATFORM
             </a>
             <p><strong>File size: 30.8 MB | Windows 10/11 | Free Forever</strong></p>
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #28a745;">
+                <h4>📥 Download Instructions:</h4>
+                <ol style="text-align: left; margin: 10px 0;">
+                    <li>Click the download button above</li>
+                    <li>Save the file to your desired location</li>
+                    <li>Right-click the downloaded file → "Run as administrator"</li>
+                    <li>Allow the automatic setup process (30 seconds)</li>
+                    <li>Launch from desktop shortcut when complete</li>
+                </ol>
+            </div>
         </div>
 
         <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #666;">
             <p>Last Updated: October 28, 2025 | Version: 1.0.0 | Build: Release</p>
+            <p>SHA-256: <code style="font-size: 11px;">7d16969280557c499189f78977b47ebeb46f07bd37393c5a00c2ac5e768fa53a</code></p>
         </div>
     </div>
-</body>
-</html>
+
+    <script>
+        function trackDownload() {
+            console.log('Download started: CybersecurityPlatform.exe');
+            // You can add analytics tracking here if needed
+            try {
+                // Optional: Google Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download', {
+                        'event_category': 'Software',
+                        'event_label': 'CybersecurityPlatform.exe',
+                        'value': 1
+                    });
+                }
+            } catch (e) {
+                console.log('Analytics not available');
+            }
+        }
+
+        // Show download confirmation
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadButtons = document.querySelectorAll('a[download]');
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    setTimeout(() => {
+                        if (confirm('Download started! The file should begin downloading shortly.\n\nAfter download:\n1. Right-click the file\n2. Select "Run as administrator"\n3. Wait for automatic setup\n\nWould you like to see the installation guide?')) {
+                            // Scroll to installation guide or show it
+                            document.querySelector('.warning-box').scrollIntoView({behavior: 'smooth'});
+                        }
+                    }, 1000);
+                });
+            });
+        });
+    </script>

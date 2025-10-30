@@ -1,0 +1,190 @@
+# Virus Signatures Database
+# Format: NAME|TYPE|SIGNATURE|DESCRIPTION|SEVERITY
+# Types: HASH, HEX, STRING, YARA
+# Severity: 1-10 (10 = Critical)
+
+# ===============================
+# CRITICAL MALWARE SIGNATURES
+# ===============================
+
+# WannaCry Ransomware
+WannaCry|HEX|4d5a90000300000004000000ffff0000|WannaCry Ransomware - Critical Threat|10
+WannaCryPayload|STRING|tasksche.exe|WannaCry Task Scheduler Component|10
+WannaCryEncrypt|STRING|.WNCRY|WannaCry Encrypted File Extension|10
+
+# Petya/NotPetya Ransomware
+Petya|HEX|558bec83ec50a1????????8945fc833d|Petya/NotPetya Ransomware|10
+PetyaBootloader|STRING|Your files are encrypted|Petya Ransom Message|10
+
+# Locky Ransomware
+Locky|STRING|.locky|Locky Encrypted File Extension|10
+LockyPayload|HEX|6a006a006a006800400000|Locky Payload Signature|10
+
+# Zeus Banking Trojan
+Zeus|HEX|558bec51538b5d088365fc00|Zeus Banking Trojan|9
+ZeusConfig|STRING|ntos.exe|Zeus Configuration File|9
+
+# ===============================
+# TROJANS & BACKDOORS
+# ===============================
+
+# Emotet
+Emotet|HEX|4d5a900003000000040000|Emotet Trojan|9
+EmotetC2|STRING|/wp-admin/|Emotet Command & Control|9
+
+# TrickBot
+TrickBot|STRING|moduleconfig|TrickBot Banking Trojan|9
+TrickBotInject|HEX|e8????????5883e803|TrickBot Injection|9
+
+# Cobalt Strike Beacon
+CobaltStrike|HEX|fc4883e4f0e8c8000000|Cobalt Strike Beacon|9
+CobaltStrikeConfig|STRING|beacon.dll|Cobalt Strike Beacon DLL|9
+
+# Generic Backdoor
+Backdoor|STRING|cmd.exe /c|Generic Command Execution|8
+BackdoorShell|STRING|nc.exe -l -p|Netcat Backdoor|8
+
+# ===============================
+# MINERS & CRYPTOJACKERS
+# ===============================
+
+# XMRig Monero Miner
+XMRig|STRING|xmrig.exe|XMRig Cryptocurrency Miner|7
+MoneroMiner|STRING|cryptonight|Monero Mining Algorithm|7
+CoinMiner|STRING|stratum+tcp|Mining Pool Connection|7
+
+# Browser Miners
+CoinHive|STRING|coinhive.com|CoinHive Browser Miner|6
+JSMiner|STRING|var Module|JavaScript Cryptocurrency Miner|6
+
+# ===============================
+# WORMS & SPREADING MALWARE
+# ===============================
+
+# Conficker Worm
+Conficker|HEX|558bec83ec?????b8????????e8|Conficker Worm|9
+ConfickerDrop|STRING|wuauclt.exe|Conficker Dropper|9
+
+# Generic USB Worm
+USBWorm|STRING|autorun.inf|USB Autorun Worm|7
+AutorunMalware|STRING|[autorun]|Autorun Malware|7
+
+# ===============================
+# ADWARE & PUPs
+# ===============================
+
+# Browser Hijacker
+BrowserHijack|STRING|search.yahoo.com|Browser Search Hijacker|5
+AdwareInstall|STRING|installcore|Adware Installer|4
+
+# Potentially Unwanted Programs
+PUP|STRING|bundlore|Potentially Unwanted Program|4
+Toolbar|STRING|toolbar.dll|Browser Toolbar|3
+
+# ===============================
+# ROOTKITS
+# ===============================
+
+# Generic Rootkit
+Rootkit|HEX|fa33c08ed0bc007c|Generic Rootkit Signature|9
+KernelRootkit|STRING|ntoskrnl.exe|Kernel-level Rootkit|10
+
+# ===============================
+# EXPLOIT KITS
+# ===============================
+
+# RIG Exploit Kit
+RIGKit|STRING|application/octet-stream|RIG Exploit Kit|8
+ExploitFlash|STRING|CWS|Flash Exploit Signature|8
+
+# ===============================
+# FILELESS MALWARE
+# ===============================
+
+# PowerShell Based
+PowerShellMal|STRING|IEX (New-Object Net.WebClient)|Malicious PowerShell|8
+PowershellDownload|STRING|DownloadString|PowerShell Download Cradle|7
+
+# WMI Based
+WMIMalware|STRING|Win32_Process|WMI Process Creation|6
+
+# ===============================
+# PHISHING & SOCIAL ENGINEERING
+# ===============================
+
+# Fake Antivirus
+FakeAV|STRING|Your computer is infected|Fake Antivirus Message|6
+ScarewareAlert|STRING|Click here to clean|Scareware Alert|5
+
+# ===============================
+# MOBILE MALWARE SIGNATURES
+# ===============================
+
+# Android Malware
+AndroidTrojan|STRING|classes.dex|Android Trojan|7
+APKMalware|HEX|504b0304|Malicious APK File|6
+
+# ===============================
+# MACRO MALWARE
+# ===============================
+
+# Office Macro Viruses
+MacroVirus|STRING|Auto_Open|Office Macro Virus|8
+WordMacro|STRING|Document_Open|Word Macro Malware|8
+ExcelMacro|STRING|Workbook_Open|Excel Macro Malware|8
+
+# ===============================
+# NETWORK BASED THREATS
+# ===============================
+
+# Port Scanners
+PortScan|STRING|nmap|Network Port Scanner|5
+NetworkRecon|STRING|masscan|Network Reconnaissance|5
+
+# DDoS Tools
+DDoSTool|STRING|LOIC|Low Orbit Ion Cannon|7
+DDoSBot|STRING|botnet|DDoS Botnet|8
+
+# ===============================
+# ADVANCED PERSISTENT THREATS
+# ===============================
+
+# APT Signatures
+APT1|HEX|894c241c8b442420|APT1 Malware Signature|10
+APTBackdoor|STRING|apt.exe|APT Backdoor|9
+
+# ===============================
+# GENERIC MALWARE PATTERNS
+# ===============================
+
+# Suspicious Strings
+SuspiciousAPI|STRING|VirtualAlloc|Suspicious API Call|6
+ShellcodePattern|HEX|909090909090|NOP Sled Pattern|7
+PackerUPX|STRING|UPX!|UPX Packed Executable|5
+
+# Registry Modifications
+RegPersist|STRING|HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|Registry Persistence|6
+
+# ===============================
+# RECENT THREATS (2024-2025)
+# ===============================
+
+# LockBit Ransomware
+LockBit|STRING|.lockbit|LockBit Ransomware|10
+LockBitNote|STRING|LockBit_Ransomware|LockBit Ransom Note|10
+
+# BlackCat/ALPHV
+BlackCat|STRING|.alphv|BlackCat/ALPHV Ransomware|10
+AlphvRansom|STRING|HOW_TO_RESTORE|ALPHV Recovery Instructions|10
+
+# Qakbot Banking Trojan
+Qakbot|HEX|558bec83ec??8365??00|Qakbot Banking Trojan|9
+QakbotC2|STRING|/t4|Qakbot C2 Communication|9
+
+# IcedID Banking Trojan
+IcedID|STRING|gzip64|IcedID Banking Trojan|8
+IcedIDLoader|HEX|4d5a????????ba??00|IcedID Loader|8
+
+# BazarLoader
+BazarLoader|STRING|/api/v|BazarLoader C2|8
+BazarConfig|HEX|ba????????b9????????|BazarLoader Configuration|8

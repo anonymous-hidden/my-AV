@@ -1,0 +1,12 @@
+import version_config
+print(f"Type: {version_config.VERSION_TYPE}")
+print(f"Name: {version_config.VERSION_NAME}")
+print(f"Enterprise: {version_config.is_feature_available('enterprise_features')}")
+print(f"Premium: {version_config.is_feature_available('premium_features')}")
+print(f"VPN: {version_config.is_feature_available('basic_vpn')}")
+print(f"Malware Analyzer: {version_config.is_feature_available('advanced_malware_analyzer')}")
+print(f"Deep Network: {version_config.is_feature_available('deep_network_analyzer')}")
+version_info = version_config.get_version_info()
+print(f"Plan Name: {version_info['plan_name']}")
+print(f"Plan Color: {version_info['plan_color']}")
+print(f"Is Enterprise: {version_info['is_enterprise']}")

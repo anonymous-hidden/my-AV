@@ -1,0 +1,152 @@
+# Behavioral Detection Rules
+# Format: BEHAVIOR_TYPE|PATTERN|DESCRIPTION|SEVERITY|CATEGORY
+
+# ===============================
+# FILE SYSTEM BEHAVIOR
+# ===============================
+
+FILE_CREATION|*.exe in %TEMP%|Executable Creation in Temp Directory|7|Suspicious_File_Activity
+FILE_CREATION|autorun.inf|Autorun File Creation|8|Malware_Persistence
+FILE_DELETION|*.log|Log File Deletion|6|Anti_Forensics
+FILE_ENCRYPTION|Multiple file extensions changed|Mass File Encryption|10|Ransomware_Activity
+FILE_MODIFICATION|hosts file|Hosts File Modification|8|System_Hijacking
+
+# ===============================
+# REGISTRY BEHAVIOR
+# ===============================
+
+REGISTRY_WRITE|HKLM\Software\Microsoft\Windows\CurrentVersion\Run|Startup Persistence|8|Persistence
+REGISTRY_WRITE|HKCU\Software\Microsoft\Windows\CurrentVersion\Run|User Startup Persistence|7|Persistence
+REGISTRY_DELETE|HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall|Uninstall Entry Deletion|6|Anti_Forensics
+REGISTRY_WRITE|HKLM\System\CurrentControlSet\Services|Service Installation|7|Service_Manipulation
+REGISTRY_WRITE|HKLM\Software\Policies\Microsoft\Windows Defender|Windows Defender Disable|9|Security_Bypass
+
+# ===============================
+# PROCESS BEHAVIOR
+# ===============================
+
+PROCESS_CREATE|powershell.exe -WindowStyle Hidden|Hidden PowerShell Execution|8|Fileless_Malware
+PROCESS_CREATE|cmd.exe /c echo|Command Line Execution|6|Command_Execution
+PROCESS_INJECT|Cross-process memory write|Process Injection|9|Code_Injection
+PROCESS_HOLLOW|Process replacement|Process Hollowing|9|Evasion_Technique
+PROCESS_MIGRATE|Unexpected process migration|Process Migration|8|Evasion_Technique
+
+# ===============================
+# NETWORK BEHAVIOR
+# ===============================
+
+NETWORK_CONNECT|Outbound connection to suspicious IP|Malware C2 Communication|8|C2_Communication
+NETWORK_DOWNLOAD|Large file download|Suspicious Download Activity|6|Data_Download
+NETWORK_UPLOAD|Sensitive file upload|Data Exfiltration|9|Data_Theft
+NETWORK_SCAN|Multiple port connections|Port Scanning Activity|7|Reconnaissance
+NETWORK_BEACON|Regular periodic connections|C2 Beacon Activity|8|C2_Communication
+
+# ===============================
+# AUTHENTICATION BEHAVIOR
+# ===============================
+
+AUTH_FAILURE|Multiple failed login attempts|Brute Force Attack|7|Credential_Attack
+AUTH_ESCALATION|Privilege escalation attempt|Privilege Escalation|9|Privilege_Escalation
+AUTH_BYPASS|Authentication bypass|Security Bypass|9|Security_Bypass
+AUTH_DUMP|Credential dumping|Credential Theft|9|Credential_Theft
+AUTH_REUSE|Pass-the-hash attack|Credential Reuse|8|Lateral_Movement
+
+# ===============================
+# SYSTEM MODIFICATION
+# ===============================
+
+SYSTEM_CONFIG|Security policy modification|Security Policy Change|8|Security_Bypass
+SYSTEM_SERVICE|Suspicious service installation|Malicious Service|8|Persistence
+SYSTEM_DRIVER|Unsigned driver load|Suspicious Driver|9|Rootkit_Activity
+SYSTEM_PATCH|System file modification|System File Tampering|9|System_Compromise
+SYSTEM_TIME|System time modification|Time Manipulation|6|Anti_Forensics
+
+# ===============================
+# ENCRYPTION BEHAVIOR
+# ===============================
+
+CRYPTO_ENCRYPT|Mass file encryption|Ransomware Encryption|10|Ransomware_Activity
+CRYPTO_KEY|Cryptographic key generation|Key Generation Activity|7|Encryption_Activity
+CRYPTO_DELETE|Shadow copy deletion|Backup Deletion|9|Ransomware_Preparation
+CRYPTO_RANSOM|Ransom note creation|Ransom Note Drop|10|Ransomware_Activity
+CRYPTO_PAYMENT|Bitcoin payment request|Cryptocurrency Payment|8|Ransomware_Payment
+
+# ===============================
+# COMMUNICATION BEHAVIOR
+# ===============================
+
+COMM_C2|Command and control traffic|C2 Communication|8|C2_Activity
+COMM_EXFIL|Data exfiltration|Data Theft|9|Data_Exfiltration
+COMM_LATERAL|Lateral movement traffic|Network Propagation|8|Lateral_Movement
+COMM_RECON|Network reconnaissance|Network Discovery|6|Reconnaissance
+COMM_TUNNEL|Traffic tunneling|Covert Communication|7|Tunneling
+
+# ===============================
+# EVASION BEHAVIOR
+# ===============================
+
+EVASION_SANDBOX|Sandbox detection|Sandbox Evasion|7|Evasion_Technique
+EVASION_DEBUG|Debugger detection|Anti-Debug Technique|6|Evasion_Technique
+EVASION_VM|Virtual machine detection|VM Evasion|6|Evasion_Technique
+EVASION_PACK|Code packing/obfuscation|Code Obfuscation|7|Evasion_Technique
+EVASION_DELAY|Execution delay|Time-based Evasion|5|Evasion_Technique
+
+# ===============================
+# PERSISTENCE BEHAVIOR
+# ===============================
+
+PERSIST_STARTUP|Startup folder modification|Startup Persistence|7|Persistence
+PERSIST_SCHEDULE|Scheduled task creation|Task Scheduling|7|Persistence
+PERSIST_WMI|WMI event subscription|WMI Persistence|8|Persistence
+PERSIST_DLL|DLL hijacking|Library Hijacking|8|Persistence
+PERSIST_BOOT|Boot sector modification|Boot Persistence|9|Rootkit_Activity
+
+# ===============================
+# DATA MANIPULATION
+# ===============================
+
+DATA_STEAL|Sensitive data access|Data Theft|9|Data_Theft
+DATA_DESTROY|Data destruction|Data Destruction|8|Destructive_Activity
+DATA_MODIFY|Data modification|Data Tampering|7|Data_Manipulation
+DATA_BACKUP|Backup deletion|Backup Destruction|8|Anti_Recovery
+DATA_COMPRESS|Data compression|Data Preparation|6|Data_Staging
+
+# ===============================
+# MEMORY BEHAVIOR
+# ===============================
+
+MEMORY_INJECT|Memory injection|Code Injection|9|Code_Injection
+MEMORY_SCAN|Memory scanning|Process Memory Scan|6|Information_Gathering
+MEMORY_DUMP|Memory dumping|Memory Extraction|8|Credential_Theft
+MEMORY_PATCH|Memory patching|Runtime Modification|8|Evasion_Technique
+MEMORY_ENCRYPT|Memory encryption|Memory Protection|7|Evasion_Technique
+
+# ===============================
+# SYSTEM INFORMATION
+# ===============================
+
+INFO_GATHER|System information gathering|System Reconnaissance|5|Information_Gathering
+INFO_NETWORK|Network information gathering|Network Discovery|5|Reconnaissance
+INFO_USER|User information gathering|User Enumeration|6|Information_Gathering
+INFO_SOFTWARE|Software enumeration|Software Discovery|5|Information_Gathering
+INFO_HARDWARE|Hardware information gathering|Hardware Enumeration|4|Information_Gathering
+
+# ===============================
+# BROWSER BEHAVIOR
+# ===============================
+
+BROWSER_HIJACK|Browser settings modification|Browser Hijacking|7|Browser_Manipulation
+BROWSER_INJECT|Browser injection|Web Injection|8|Web_Attack
+BROWSER_STEAL|Browser data theft|Credential Theft|8|Data_Theft
+BROWSER_REDIRECT|Page redirection|Browser Redirection|6|Browser_Manipulation
+BROWSER_DOWNLOAD|Malicious download|Drive-by Download|8|Malware_Download
+
+# ===============================
+# MOBILE BEHAVIOR
+# ===============================
+
+MOBILE_ROOT|Device rooting|Mobile Device Compromise|8|Mobile_Attack
+MOBILE_SMS|SMS interception|SMS Fraud|7|Mobile_Fraud
+MOBILE_LOCATION|Location tracking|Privacy Violation|6|Mobile_Surveillance
+MOBILE_CONTACT|Contact list access|Data Theft|7|Mobile_Data_Theft
+MOBILE_CALL|Call interception|Call Monitoring|8|Mobile_Surveillance

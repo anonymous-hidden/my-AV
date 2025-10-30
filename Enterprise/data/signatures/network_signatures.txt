@@ -1,0 +1,165 @@
+# Network-based Attack Signatures
+# Format: PROTOCOL|PATTERN|DESCRIPTION|SEVERITY|TYPE
+
+# ===============================
+# MALWARE COMMAND & CONTROL
+# ===============================
+
+HTTP|POST /wp-admin/|Emotet C2 Communication|9|C2_Traffic
+HTTP|User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)|Zeus C2 Pattern|9|C2_Traffic
+HTTP|/beacon.dll|Cobalt Strike Beacon|9|C2_Traffic
+HTTP|/admin/1.php|Generic Malware C2|8|C2_Traffic
+HTTP|/api/v1/bot|BazarLoader C2|8|C2_Traffic
+
+# ===============================
+# RANSOMWARE NETWORK ACTIVITY
+# ===============================
+
+HTTP|/public.php|Sodinokibi/REvil C2|10|Ransomware_C2
+HTTP|/upload.php|Ransomware Data Exfiltration|10|Data_Theft
+TCP|tor.exe|Ransomware Tor Communication|9|Anonymization
+HTTP|.onion|Tor Hidden Service Access|8|Anonymization
+
+# ===============================
+# CRYPTOCURRENCY MINING
+# ===============================
+
+TCP|stratum+tcp://|Mining Pool Connection|7|Cryptomining
+TCP|pool.supportxmr.com|Monero Mining Pool|7|Cryptomining
+TCP|xmr-usa-east1.nanopool.org|XMR Mining Pool|7|Cryptomining
+HTTP|/api/stats|Mining Pool Statistics|6|Cryptomining
+
+# ===============================
+# PHISHING & SOCIAL ENGINEERING
+# ===============================
+
+HTTP|phishing|Phishing Website|7|Phishing
+HTTP|paypal-security|Fake PayPal Site|7|Phishing
+HTTP|microsoft-update|Fake Microsoft Update|6|Phishing
+HTTP|verify-account|Account Verification Scam|6|Phishing
+
+# ===============================
+# EXPLOIT KITS
+# ===============================
+
+HTTP|/landing.php|Exploit Kit Landing Page|8|Exploit_Kit
+HTTP|application/octet-stream|RIG Exploit Kit|8|Exploit_Kit
+HTTP|/gate.php|Angler Exploit Kit|8|Exploit_Kit
+HTTP|/main.php|Nuclear Exploit Kit|8|Exploit_Kit
+
+# ===============================
+# BOTNET COMMUNICATION
+# ===============================
+
+IRC|PRIVMSG #botnet|IRC Botnet Communication|8|Botnet
+HTTP|/bot.php|HTTP Botnet C2|8|Botnet
+TCP|!getfile|P2P Botnet Command|7|Botnet
+UDP|PING|DDoS Bot Heartbeat|7|Botnet
+
+# ===============================
+# DATA EXFILTRATION
+# ===============================
+
+HTTPS|/upload/|Data Upload to Suspicious Domain|9|Data_Theft
+FTP|STOR|Suspicious FTP Upload|8|Data_Theft
+HTTP|Content-Type: multipart/form-data|Large Data Upload|7|Data_Theft
+SMTP|attachment.zip|Suspicious Email Attachment|6|Data_Theft
+
+# ===============================
+# LATERAL MOVEMENT
+# ===============================
+
+SMB|\\\\ADMIN$|Administrative Share Access|8|Lateral_Movement
+RDP|3389|Remote Desktop Brute Force|7|Lateral_Movement
+WMI|SELECT * FROM Win32_Process|WMI Remote Execution|8|Lateral_Movement
+SSH|Failed password|SSH Brute Force Attempt|6|Brute_Force
+
+# ===============================
+# RECONNAISSANCE
+# ===============================
+
+ICMP|ping sweep|Network Discovery Ping|5|Reconnaissance
+TCP|SYN scan|Port Scanning Activity|6|Reconnaissance
+DNS|nslookup|DNS Reconnaissance|4|Reconnaissance
+HTTP|/robots.txt|Web Crawling Activity|3|Reconnaissance
+
+# ===============================
+# DENIAL OF SERVICE
+# ===============================
+
+TCP|SYN flood|TCP SYN Flood Attack|8|DDoS
+UDP|UDP flood|UDP Flood Attack|8|DDoS
+ICMP|ICMP flood|ICMP Flood Attack|8|DDoS
+HTTP|GET flood|HTTP GET Flood|7|DDoS
+
+# ===============================
+# SUSPICIOUS DNS QUERIES
+# ===============================
+
+DNS|.tk|Suspicious TLD Query|6|Suspicious_DNS
+DNS|.bit|Bitcoin DNS Query|5|Suspicious_DNS
+DNS|dyndns.org|Dynamic DNS Query|4|Suspicious_DNS
+DNS|no-ip.com|Dynamic DNS Service|4|Suspicious_DNS
+
+# ===============================
+# TUNNELING & EVASION
+# ===============================
+
+HTTP|X-Forwarded-For|HTTP Tunneling|6|Tunneling
+DNS|TXT record|DNS Tunneling|7|Tunneling
+ICMP|data payload|ICMP Tunneling|7|Tunneling
+HTTPS|SSL/TLS anomaly|Encrypted Tunneling|6|Tunneling
+
+# ===============================
+# CREDENTIAL ATTACKS
+# ===============================
+
+HTTP|login.php|Web Login Brute Force|6|Credential_Attack
+LDAP|bind request|LDAP Authentication Attack|7|Credential_Attack
+NTLM|Type 3 message|NTLM Credential Theft|8|Credential_Attack
+Kerberos|AS-REQ|Kerberos Attack|7|Credential_Attack
+
+# ===============================
+# MALICIOUS DOWNLOADS
+# ===============================
+
+HTTP|/download/malware.exe|Malware Download|10|Malware_Download
+HTTP|Content-Disposition: attachment|Suspicious Download|7|Suspicious_Download
+HTTPS|/files/update.exe|Fake Update Download|8|Malware_Download
+FTP|binary mode|Suspicious Binary Download|6|Suspicious_Download
+
+# ===============================
+# WEBSHELL ACTIVITY
+# ===============================
+
+HTTP|cmd=|Web Shell Command Execution|9|Web_Shell
+HTTP|eval(|PHP Code Injection|8|Code_Injection
+HTTP|system(|System Command Execution|9|Command_Execution
+HTTP|passthru(|PHP Function Abuse|8|Code_Injection
+
+# ===============================
+# MOBILE MALWARE
+# ===============================
+
+HTTP|/android/|Android Malware Download|7|Mobile_Malware
+HTTP|.apk|Android Package Download|6|Mobile_Download
+SMS|Premium rate|SMS Fraud|7|Mobile_Fraud
+HTTP|/ios/|iOS Malware Download|7|Mobile_Malware
+
+# ===============================
+# SPAM & EMAIL THREATS
+# ===============================
+
+SMTP|Subject: Re: Invoice|Invoice Spam|6|Email_Spam
+SMTP|Nigerian prince|419 Scam Email|5|Email_Scam
+SMTP|attachment.exe|Malicious Email Attachment|8|Email_Malware
+SMTP|Base64 encoded|Encoded Email Content|6|Suspicious_Email
+
+# ===============================
+# ADVANCED PERSISTENT THREATS
+# ===============================
+
+HTTP|/api/sessions|APT C2 Session|10|APT_Activity
+HTTPS|Certificate anomaly|Suspicious SSL Certificate|8|APT_Infrastructure
+DNS|Fast flux|Fast Flux DNS|9|APT_Infrastructure
+HTTP|User-Agent: custom|Custom User Agent|7|APT_Tool
